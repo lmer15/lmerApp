@@ -1,14 +1,17 @@
+version: '3.8'
+
 services:
   web:
     build: .
     container_name: lmerapp-web
     environment:
-      MYSQL_DATABASE: "myapp"
-      MYSQL_USER: "mysql"
-      MYSQL_PASSWORD: "res1216<3"
-      MYSQL_HOST: "db"
+      DB_DATABASE: "myapp"
+      DB_USERNAME: "mysql"
+      DB_PASSWORD: "res1216<3"
+      DB_HOST: "db"
+      DB_PORT: 3306
     ports:
-      - "80:80" # ✅ Apache listens on port 80, Coolify can proxy directly
+      - "80:80"
     volumes:
       - .:/var/www/html
     depends_on:
