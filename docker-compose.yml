@@ -3,7 +3,7 @@ version: '3.8'
 services:
   web:
     build: .
-    container_name: lmerapp-web
+    container_name: myapp
     environment:
       DB_DATABASE: "myapp"
       DB_USERNAME: "mysql"
@@ -19,7 +19,7 @@ services:
 
   db:
     image: mysql:5.7
-    container_name: lmerapp-db
+    container_name: myapp
     environment:
       MYSQL_ROOT_PASSWORD: "rootpassword"
       MYSQL_DATABASE: "myapp"
