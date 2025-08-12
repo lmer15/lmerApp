@@ -3,7 +3,7 @@ version: '3.8'
 services:
   web:
     build: .
-    container_name: myapp
+    container_name: lmerApp
     environment:
       DB_DATABASE: "myapp"
       DB_USERNAME: "mysql"
@@ -11,7 +11,7 @@ services:
       DB_HOST: "db"
       DB_PORT: 3306
     ports:
-      - "8080:80"
+      - "3000:80"
     volumes:
       - .:/var/www/html
     depends_on:
