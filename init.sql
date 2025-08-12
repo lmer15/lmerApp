@@ -1,10 +1,27 @@
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL
-);
+<?php
+$host = getenv('DB_HOST') ?: 'localhost';
+$user = getenv('DB_USERNAME') ?: 'root';
+$pass = getenv('DB_PASSWORD') ?: '';
+$db   = getenv('DB_DATABASE') ?: 'test';
+$port = getenv('DB_PORT') ?: 3306;
 
-INSERT INTO users (name, email) VALUES
-    ('John Doe', 'john@example.com'),
-    ('Jane Smith', 'jane@example.com'),
-    ('Mike Johnson', 'mike@example.com');
+$conn = new mysqli($host, $user, $pass, $db, $port);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+echo "Connected successfully to MySQL database!<br>";
+
+$sql = "SELECT * FROM users";
+$result = $conn->query($sql);
+
+if ($result && $result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["id"]. " - Name: " . $row["name"]. " - Email: " . $row["email"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>

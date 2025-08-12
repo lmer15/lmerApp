@@ -1,23 +1,7 @@
 services:
   web:
     build: .
-    environment:
-      MYSQL_DATABASE: "mysql"
     ports:
       - "8080:80"
     volumes:
       - .:/var/www/html
-    depends_on:
-      - db
-
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: myapp
-    volumes:
-      - ./mysql-data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-
-volumes:
-  mysql-data:
